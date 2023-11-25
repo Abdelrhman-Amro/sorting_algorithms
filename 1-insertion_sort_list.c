@@ -10,6 +10,8 @@ void insertion_sort_list(listint_t **list)
 	listint_t *node, *key, *select;
 
 	node = *list;
+	if (node == NULL)
+		return;
 	node = node->next;
 	while (node)
 	{
