@@ -7,5 +7,29 @@
 */
 void insertion_sort_list(listint_t **list)
 {
-    
+	listint_t *node, *key, *select;
+
+	node = *list;
+	node = node->next;
+	while (node)
+	{
+		key = node;
+		select = key->prev;
+		node = node->next;
+		while (select && (key->n < select->n))
+		{
+			if (key->next != NULL)
+				key->next->prev = select;
+			if (select->prev != NULL)
+				select->prev->next = key;
+			key->prev = select->prev;
+			select->next = key->next;
+			key->next = select;
+			select->prev = key;
+			select = key->prev;
+			if (key->prev == NULL)
+				*list = key;
+			print_list(*list);
+		}
+	}
 }
